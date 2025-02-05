@@ -10,4 +10,6 @@
     
     <!-- Evolve Colors -->
     <color name="background">#021f53</color>
+    <color name="item_background">#00ABE0</color>
+    <color name="secondarycolor">#2f9193</color>
 </resources>
