@@ -13,7 +13,7 @@
         android:theme="@style/Theme.AppEvolve"
         tools:targetApi="31">
         <activity
-            android:name=".LoginActivity"
+            android:name=".Login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".Inicio.InicioActivity"
