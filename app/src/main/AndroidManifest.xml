@@ -13,13 +13,13 @@
         android:theme="@style/Theme.AppEvolve"
         tools:targetApi="31">
         <activity
-            android:name=".Detalles.DetallesActivity"
+            android:name=".pago.PagoActivity"
             android:exported="false" />
         <activity
             android:name=".Usuarios.UsuariosActivity"
             android:exported="false" />
         <activity
-            android:name=".firebase.FirebaseActivity"
+            android:name=".main.MainActivity"
             android:exported="false" />
         <activity
             android:name=".Login.LoginActivity"

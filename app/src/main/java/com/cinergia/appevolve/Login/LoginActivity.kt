@@ -3,7 +3,6 @@ package com.cinergia.appevolve.Login
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,7 +12,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.cinergia.appevolve.R
-import com.cinergia.appevolve.Usuarios.UsuariosActivity
+import com.cinergia.appevolve.pago.PagoActivity
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,7 +65,7 @@ class LoginActivity : AppCompatActivity() {
 
         if (contrasena == contrasenaCorrecta) {
             tvError.text = ""
-            val intent = Intent(this, UsuariosActivity::class.java)
+            val intent = Intent(this, PagoActivity::class.java)
             intent.putExtra("EXTRA_USUARIO", usuario)
             startActivity(intent)
         } else {
