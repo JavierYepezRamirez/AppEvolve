@@ -13,6 +13,15 @@
         android:theme="@style/Theme.AppEvolve"
         tools:targetApi="31">
         <activity
+            android:name=".Detalles.DetallesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Usuarios.UsuariosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".firebase.FirebaseActivity"
+            android:exported="false" />
+        <activity
             android:name=".Login.LoginActivity"
             android:exported="false" />
         <activity

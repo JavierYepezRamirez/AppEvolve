@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="16dp"
+    app:cardBackgroundColor="@color/item_background"
+    android:layout_margin="10dp"
+    android:layout_marginVertical="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="8dp"
+        android:layout_margin="3dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="start|center_vertical">
+
+            <ImageView
+                android:src="@drawable/baseline_account_circle_24"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/tvNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="Nombre" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="start|center_vertical">
+
+            <ImageView
+                android:src="@drawable/ic_telefono"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/tvTelefono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                tools:text="Telefono" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+

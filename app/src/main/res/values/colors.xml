@@ -12,4 +12,5 @@
     <color name="background">#021f53</color>
     <color name="item_background">#00ABE0</color>
     <color name="secondarycolor">#2f9193</color>
+    <color name="red">#FF0000</color>
 </resources>
