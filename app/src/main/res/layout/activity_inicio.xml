@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Inicio.InicioActivity"
-    android:background="@color/background"
+    android:background="@drawable/back"
     android:paddingVertical="32dp"
     android:paddingHorizontal="19dp">
 
@@ -26,11 +26,11 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/usuario1"
         android:layout_width="201dp"
-        android:layout_height="170dp"
+        android:layout_height="210dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewLogo"
-        app:cardBackgroundColor="@color/item_background"
+        app:cardBackgroundColor="@color/background"
         app:cardCornerRadius="16dp"
         android:layout_marginTop="20dp">
 
@@ -61,7 +61,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Iniciar sesion"
-                android:backgroundTint="@color/background">
+                android:backgroundTint="@color/item_background"
+                android:layout_marginTop="20dp">
             </Button>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -71,11 +72,11 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/usuario2"
         android:layout_width="201dp"
-        android:layout_height="170dp"
+        android:layout_height="210dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usuario1"
-        app:cardBackgroundColor="@color/item_background"
+        app:cardBackgroundColor="@color/background"
         app:cardCornerRadius="16dp"
         android:layout_marginTop="50dp">
 
@@ -105,8 +106,9 @@
                 android:id="@+id/btnUsuario2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Iniciar sesion"
-                android:backgroundTint="@color/background">
+                android:backgroundTint="@color/item_background">
             </Button>
 
         </androidx.appcompat.widget.LinearLayoutCompat>

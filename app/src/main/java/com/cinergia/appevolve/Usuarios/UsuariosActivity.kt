@@ -8,8 +8,8 @@ import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-//import com.cinergia.appevolve.Detalles.DetallesActivity
 import com.cinergia.appevolve.R
+import com.cinergia.appevolve.pago.PagoActivity
 import com.google.firebase.database.*
 
 class UsuariosActivity : AppCompatActivity() {
@@ -29,10 +29,9 @@ class UsuariosActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = UsuarioAdapter(listaUsuarios) { usuario ->
             Log.d("UsuariosActivity", "Usuario seleccionado: $usuario")
-            // Aquí puedes abrir otra actividad si lo necesitas
-             //val intent = Intent(this, DetallesActivity::class.java)
-             //intent.putExtra("usuario", usuario)
-             //startActivity(intent)
+             val intent = Intent(this, PagoActivity::class.java)
+             intent.putExtra("usuario", usuario)
+             startActivity(intent)
         }
         recyclerView.adapter = adapter
 
@@ -82,7 +81,7 @@ class UsuariosActivity : AppCompatActivity() {
         val filteredList = listaUsuarios.filter {
             it.nombre?.contains(query ?: "", ignoreCase = true) == true || it.telefono?.toString()?.contains(query ?: "", ignoreCase = true) == true
         }
-        adapter = UsuarioAdapter(filteredList) {}
-        recyclerView.adapter = adapter
+        // Actualiza la lista en el adaptador
+        adapter.updateList(filteredList)
     }
 }

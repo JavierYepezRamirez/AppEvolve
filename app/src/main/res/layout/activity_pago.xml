@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@drawable/back"
     tools:context=".pago.PagoActivity">
 
     <ImageView
@@ -21,48 +21,17 @@
         app:layout_constraintVertical_bias="0.007">
     </ImageView>
 
-    <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/baseline_account_circle_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.500"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.210"
-        app:tint="@color/white">
-    </ImageView>
-
-    <TextView
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/dmsans_bold"
-        android:text="USUARIO 1"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.500"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.290">
-    </TextView>
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardUserp"
         android:layout_width="350dp"
         android:layout_height="320dp"
         android:layout_gravity="center"
         android:layout_margin="16dp"
-        app:cardBackgroundColor="@color/item_background"
+        android:elevation="@dimen/cardview_compat_inset_shadow"
+        app:cardBackgroundColor="#2E2E2E"
         app:cardCornerRadius="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.590">
@@ -83,66 +52,63 @@
                 app:layout_constraintHorizontal_bias="0.10"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.100">
-            </TextView>
+                app:layout_constraintVertical_bias="0.100"></TextView>
 
             <TextView
                 android:layout_width="300dp"
                 android:layout_height="40dp"
+                android:layout_margin="16dp"
                 android:text="Nombre de Usuario"
-                android:textSize="20dp"
-                android:layout_margin="16dp"
                 android:textColor="@color/white"
+                android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.20"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.220">
-            </TextView>
-            <TextView
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:text="Telefono de Usuario"
-                android:textSize="20dp"
-                android:layout_margin="16dp"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.20"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.420">
-            </TextView>
-            <TextView
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:text="Direccion de Usuario"
-                android:textSize="20dp"
-                android:layout_margin="16dp"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.20"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.620">
-            </TextView>
+                app:layout_constraintVertical_bias="0.220"></TextView>
 
             <TextView
                 android:layout_width="300dp"
                 android:layout_height="40dp"
-                android:text="Plan de Usuario"
-                android:textSize="20dp"
                 android:layout_margin="16dp"
+                android:text="Telefono de Usuario"
                 android:textColor="@color/white"
+                android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.20"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.820">
-            </TextView>
+                app:layout_constraintVertical_bias="0.420"></TextView>
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                android:text="Direccion de Usuario"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.620"></TextView>
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                android:text="Plan de Usuario"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.820"></TextView>
 
             <TextView
                 android:layout_width="300dp"
@@ -156,74 +122,36 @@
                 app:layout_constraintHorizontal_bias="0.20"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0">
-            </TextView>
+                app:layout_constraintVertical_bias="1.0"></TextView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAceptar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="350"
-        android:backgroundTint="#FF9800"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.50"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.840">
-    </androidx.appcompat.widget.AppCompatButton>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="350"
-        android:backgroundTint="#FF9800"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.840">
-    </androidx.appcompat.widget.AppCompatButton>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="350"
-        android:backgroundTint="#FF9800"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.90"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.840">
-    </androidx.appcompat.widget.AppCompatButton>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:backgroundTint="#00BCD4"
         android:text="Aceptar"
-        android:backgroundTint="#0BCA0D"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.30"
+        app:layout_constraintHorizontal_bias="0.312"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.950">
+        app:layout_constraintVertical_bias="0.900">
     </androidx.appcompat.widget.AppCompatButton>
+
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cancelar"
-        android:backgroundTint="#FF0C00"
+        android:backgroundTint="#F23030"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.70"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.950">
+        app:layout_constraintVertical_bias="0.900">
     </androidx.appcompat.widget.AppCompatButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

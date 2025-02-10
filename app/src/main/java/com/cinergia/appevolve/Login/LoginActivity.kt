@@ -12,6 +12,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.cinergia.appevolve.R
+import com.cinergia.appevolve.main.MainActivity
 import com.cinergia.appevolve.pago.PagoActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -65,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
 
         if (contrasena == contrasenaCorrecta) {
             tvError.text = ""
-            val intent = Intent(this, PagoActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("EXTRA_USUARIO", usuario)
             startActivity(intent)
         } else {

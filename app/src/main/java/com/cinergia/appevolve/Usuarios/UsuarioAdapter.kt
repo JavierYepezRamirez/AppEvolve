@@ -8,8 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cinergia.appevolve.R
 
-class UsuarioAdapter(private val listaUsuarios: List<Clientes>, private val listener: (Clientes) -> Unit) :
-    RecyclerView.Adapter<UsuarioAdapter.UsuarioViewHolder>() {
+class UsuarioAdapter(
+    private var listaUsuarios: List<Clientes>,
+    private val listener: (Clientes) -> Unit
+) : RecyclerView.Adapter<UsuarioAdapter.UsuarioViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsuarioViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_usuario, parent, false)
@@ -28,6 +30,11 @@ class UsuarioAdapter(private val listaUsuarios: List<Clientes>, private val list
     }
 
     override fun getItemCount(): Int = listaUsuarios.size
+
+    fun updateList(newList: List<Clientes>) {
+        listaUsuarios = newList
+        notifyDataSetChanged() // Notifica al adaptador que se ha actualizado la lista
+    }
 
     class UsuarioViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvNombre: TextView = itemView.findViewById(R.id.tvNombre)
