@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "638586734066",
+    "project_id": "appevolve",
+    "storage_bucket": "appevolve.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638586734066:android:14cff55e5aa9aa0297976b",
+        "android_client_info": {
+          "package_name": "com.cinergia.AppEvolve"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3pGTuG1aWhkb2McWJG28sASRvLXJbcVY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
