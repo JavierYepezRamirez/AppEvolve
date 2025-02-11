@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back"
+    android:background="@drawable/d3"
     tools:context=".pago.PagoActivity">
 
     <ImageView
@@ -52,7 +52,8 @@
                 app:layout_constraintHorizontal_bias="0.10"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.100"></TextView>
+                app:layout_constraintVertical_bias="0.100">
+            </TextView>
 
             <TextView
                 android:layout_width="300dp"
@@ -66,7 +67,8 @@
                 app:layout_constraintHorizontal_bias="0.20"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.220"></TextView>
+                app:layout_constraintVertical_bias="0.220">
+            </TextView>
 
             <TextView
                 android:layout_width="300dp"
@@ -80,7 +82,8 @@
                 app:layout_constraintHorizontal_bias="0.20"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.420"></TextView>
+                app:layout_constraintVertical_bias="0.420">
+            </TextView>
 
             <TextView
                 android:layout_width="300dp"
@@ -94,7 +97,8 @@
                 app:layout_constraintHorizontal_bias="0.20"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.620"></TextView>
+                app:layout_constraintVertical_bias="0.620">
+            </TextView>
 
             <TextView
                 android:layout_width="300dp"
@@ -108,7 +112,8 @@
                 app:layout_constraintHorizontal_bias="0.20"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.820"></TextView>
+                app:layout_constraintVertical_bias="0.820">
+            </TextView>
 
             <TextView
                 android:layout_width="300dp"
@@ -122,7 +127,8 @@
                 app:layout_constraintHorizontal_bias="0.20"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"></TextView>
+                app:layout_constraintVertical_bias="1.0">
+            </TextView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -142,6 +148,7 @@
     </androidx.appcompat.widget.AppCompatButton>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCancelar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cancelar"
