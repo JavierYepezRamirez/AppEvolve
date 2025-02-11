@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:background="#333333"
+    android:paddingVertical="20dp"
+    android:paddingHorizontal="30dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecciona pago a realizar"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="20dp">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipos de pagos"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/white"
+        android:textSize="16dp">
+    </TextView>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/item_background"
+            android:id="@+id/cb250">
+        </CheckBox>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/item_background"
+            android:id="@+id/cb350">
+        </CheckBox>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:buttonTint="@color/item_background"
+            android:layout_height="wrap_content"
+            android:id="@+id/cb450">
+        </CheckBox>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:text="$250">
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:layout_marginHorizontal="20dp"
+            android:text="$350">
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:text="$450">
+        </TextView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <EditText
+        android:id="@+id/etCredito"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingresa monto a pagar"
+        android:textColorHint="@color/white">
+    </EditText>
+
+    <EditText
+        android:id="@+id/etObservaciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Observaciones"
+        android:textColorHint="@color/white">
+    </EditText>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnAceptar"
+            android:layout_width="120dp"
+            android:layout_marginStart="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="#4CAF50"
+            android:text="Pagar">
+        </Button>
+
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#F81302"
+            android:layout_marginEnd="20dp"
+            android:text="Cancelar">
+        </Button>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</LinearLayout>
