@@ -148,6 +148,7 @@ class PagoActivity : AppCompatActivity() {
         //val intent = Intent(this, OtraActivity::class.java) Tiket
         intent.putExtra("cliente", cliente)
         intent.putExtra("EXTRA_USUARIO", usuario)
+        intent.putExtra("fecha", fechaActual)
     }
 
     private fun goToFirebase(cliente: Clientes, fechaActual: String, usuario: String) {
