@@ -24,7 +24,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardUserp"
         android:layout_width="350dp"
-        android:layout_height="320dp"
+        android:layout_height="420dp"
         android:layout_gravity="center"
         android:layout_margin="16dp"
         android:elevation="@dimen/cardview_compat_inset_shadow"
@@ -47,6 +47,7 @@
                 android:text="DATOS DEL USUARIO"
                 android:textColor="@color/white"
                 android:textSize="20dp"
+                android:id="@+id/Datos"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.10"
@@ -56,8 +57,9 @@
             </TextView>
 
             <TextView
+                android:id="@+id/tvNombre"
                 android:layout_width="300dp"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_margin="16dp"
                 android:text="Nombre de Usuario"
                 android:textColor="@color/white"
@@ -71,8 +73,9 @@
             </TextView>
 
             <TextView
+                android:id="@+id/tvTelefono"
                 android:layout_width="300dp"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_margin="16dp"
                 android:text="Telefono de Usuario"
                 android:textColor="@color/white"
@@ -86,8 +89,9 @@
             </TextView>
 
             <TextView
+                android:id="@+id/tvDireccion"
                 android:layout_width="300dp"
-                android:layout_height="40dp"
+                android:layout_height="80dp"
                 android:layout_margin="16dp"
                 android:text="Direccion de Usuario"
                 android:textColor="@color/white"
@@ -101,8 +105,9 @@
             </TextView>
 
             <TextView
+                android:id="@+id/tvPan"
                 android:layout_width="300dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:layout_margin="16dp"
                 android:text="Plan de Usuario"
                 android:textColor="@color/white"
@@ -116,8 +121,9 @@
             </TextView>
 
             <TextView
+                android:id="@+id/tvFecha"
                 android:layout_width="300dp"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_margin="16dp"
                 android:text="Fecha de Pago"
                 android:textColor="@color/white"
@@ -131,6 +137,7 @@
             </TextView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.AppCompatButton

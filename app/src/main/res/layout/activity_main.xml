@@ -8,7 +8,7 @@
     tools:context=".main.MainActivity"
     android:paddingVertical="32dp"
     android:paddingHorizontal="19dp"
-    android:background="@drawable/d3">
+    android:background="@drawable/back">
 
     <ImageView
         android:id="@+id/viewLogo"

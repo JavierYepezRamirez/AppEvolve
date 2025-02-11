@@ -3,7 +3,9 @@ package com.cinergia.appevolve.Inicio
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -23,9 +25,11 @@ class InicioActivity : AppCompatActivity() {
 
         val btnUsuario1 = findViewById<Button>(R.id.btnUsuario1)
         val btnUsuario2 = findViewById<Button>(R.id.btnUsuario2)
+        val btnInfo = findViewById<ImageView>(R.id.btnInfo)
         
         btnUsuario1.setOnClickListener { navigateToLoginUsuario1() }
         btnUsuario2.setOnClickListener { navigateToLoginUsuario2() }
+        btnInfo.setOnClickListener { mostrarDialogoInformacion() }
     }
 
     private fun navigateToLoginUsuario1() {
@@ -43,5 +47,13 @@ class InicioActivity : AppCompatActivity() {
         val intent = Intent(this,LoginActivity::class.java)
         intent.putExtra("EXTRA_USUARIO",usuario2)
         startActivity(intent)
+    }
+
+    private fun mostrarDialogoInformacion() {
+        AlertDialog.Builder(this)
+            .setTitle("Información del Programa")
+            .setMessage("Este programa fue desarrollado por María Luisa Aguilar Pérez y Javier Yépez Ramírez, con la supervisión y apoyo.")
+            .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+            .show()
     }
 }

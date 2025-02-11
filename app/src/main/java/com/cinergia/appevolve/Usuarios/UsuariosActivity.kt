@@ -22,15 +22,18 @@ class UsuariosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_usuarios)
 
+        val usuario: String = intent.extras?.getString("EXTRA_USUARIO").orEmpty()
+
         recyclerView = findViewById(R.id.recyclerView)
         val searchView: SearchView = findViewById(R.id.searchView)
         listaUsuarios = mutableListOf()
 
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = UsuarioAdapter(listaUsuarios) { usuario ->
-            Log.d("UsuariosActivity", "Usuario seleccionado: $usuario")
+        adapter = UsuarioAdapter(listaUsuarios) {cliente ->
+            Log.d("UsuariosActivity", "Usuario seleccionado: $cliente")
              val intent = Intent(this, PagoActivity::class.java)
-             intent.putExtra("usuario", usuario)
+             intent.putExtra("cliente", cliente)
+             intent.putExtra("EXTRA_USUARIO", usuario)
              startActivity(intent)
         }
         recyclerView.adapter = adapter
