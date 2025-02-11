@@ -27,21 +27,30 @@
         android:gravity="center"
         android:paddingTop="10dp"/>
 
-    <Button
-        android:id="@+id/btnYes"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sí"
-        android:backgroundTint="#4CAF50"
-        android:textColor="@color/white"
-        android:layout_marginTop="10dp"/>
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="Sí"
+            android:backgroundTint="#4CAF50"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"/>
 
-    <Button
-        android:id="@+id/btnNo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="No"
-        android:backgroundTint="#F81302"
-        android:textColor="@color/white"
-        android:layout_marginTop="5dp"/>
+        <Button
+            android:id="@+id/btnNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:text="No"
+            android:backgroundTint="#F81302"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 </LinearLayout>
