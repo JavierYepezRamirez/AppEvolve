@@ -39,13 +39,24 @@ class PagoActivity : AppCompatActivity() {
         val fechaActual: String = LocalDate.now().toString()
 
         findViewById<TextView>(R.id.tvNombre).text = "Nombre: ${cliente.nombre ?: "Desconocido"}"
-        findViewById<TextView>(R.id.tvTelefono).text = "Telefono: ${cliente.telefono ?: "Desconocido"}"
-        findViewById<TextView>(R.id.tvDireccion).text = "Direccion: ${cliente.direccion ?: "Desconocido"}"
+        findViewById<TextView>(R.id.tvTelefono).text = "Teléfono: ${cliente.telefono ?: "Desconocido"}"
+        findViewById<TextView>(R.id.tvDireccion).text = "Dirección: ${cliente.direccion ?: "Desconocido"}"
         findViewById<TextView>(R.id.tvPan).text = "Plan($): ${cliente.plan ?: "Desconocido"}"
         findViewById<TextView>(R.id.tvFecha).text = "Fecha: $fechaActual"
 
-        findViewById<AppCompatButton>(R.id.btnCancelar).setOnClickListener { mostrarDialogoCancelar(usuario) }
-        findViewById<AppCompatButton>(R.id.btnAceptar).setOnClickListener { mostrarDialogoPago(cliente, fechaActual, usuario) }
+
+        findViewById<AppCompatButton>(R.id.btnCancelar).setOnClickListener {
+            mostrarDialogoCancelar(
+                usuario
+            )
+        }
+        findViewById<AppCompatButton>(R.id.btnAceptar).setOnClickListener {
+            mostrarDialogoPago(
+                cliente,
+                fechaActual,
+                usuario
+            )
+        }
     }
 
     private fun mostrarDialogoCancelar(usuario: String) {
@@ -85,28 +96,46 @@ class PagoActivity : AppCompatActivity() {
             cbCredito
         )
 
-        fun actualizarEstado() {
-            btnAceptarItem.isEnabled = checkBoxes.any { it.isChecked }
+        fun actualizarEstado(selectedCheckBox: CheckBox) {
+            checkBoxes.forEach { checkBox ->
+                if (checkBox != selectedCheckBox) {
+                    checkBox.isChecked = false
+                }
+            }
+
+            btnAceptarItem.isEnabled = selectedCheckBox.isChecked
             etCredito.isEnabled = cbCredito.isChecked
-            if (!cbCredito.isChecked) etCredito.text.clear()
+
+            if (!cbCredito.isChecked) {
+                etCredito.text.clear()
+            }
         }
 
-        checkBoxes.forEach { it.setOnCheckedChangeListener { _, _ -> actualizarEstado() } }
+        checkBoxes.forEach { checkBox ->
+            checkBox.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    actualizarEstado(checkBox)
+                }
+            }
+        }
 
         btnAceptarItem.setOnClickListener {
             val pago = when {
                 checkBoxes[0].isChecked -> 250
                 checkBoxes[1].isChecked -> 350
                 checkBoxes[2].isChecked -> 450
+                cbCredito.isChecked -> etCredito.text.toString().toIntOrNull() ?: 0
                 else -> 0
             }
 
-            val credito = etCredito.text.toString().ifBlank { "Ninguno" }
-            val observaciones = dialogView.findViewById<EditText>(R.id.etObservaciones).text.toString().ifBlank { "Ninguno" }
+            val credito = if (cbCredito.isChecked) etCredito.text.toString() else "Ninguno"
+            val observaciones =
+                dialogView.findViewById<EditText>(R.id.etObservaciones).text.toString()
+                    .ifBlank { "Ninguno" }
 
             AlertDialog.Builder(this)
-                .setTitle("Pago Exitoso")
-                .setMessage("Su pago fue correctamente capturado")
+                .setTitle("✅ Pago Exitoso")
+                .setMessage("Por favor, revisa tu correo para el envío. 💌")
                 .setPositiveButton("OK") { _, _ ->
                     goToTiket(cliente, fechaActual, usuario, credito, observaciones, pago)
                     goToEmail(cliente, fechaActual, usuario, credito, observaciones, pago)
@@ -123,23 +152,30 @@ class PagoActivity : AppCompatActivity() {
         dialog.show()
     }
 
-        private fun goToEmail(cliente: Clientes, fechaActual: String, usuario: String, credito: String, observaciones: String, pago: Int) {
-        val destinatario = "javier_yepez@outlook.com"  //Cambiar por correo de Felipe
+    private fun goToEmail(
+        cliente: Clientes,
+        fechaActual: String,
+        usuario: String,
+        credito: String,
+        observaciones: String,
+        pago: Int
+    ) {
+        val destinatario = "javier_yepez@outlook.com"
         val asunto = "Pago registrado - ${cliente.nombre}, registrado por $usuario"
         val mensaje = """
-        Nombre: ${cliente.nombre ?: "Desconocido"}
-        Teléfono: ${cliente.telefono?.toString() ?: "Desconocido"}
-        Dirección: ${cliente.direccion ?: "Desconocido"}
-        Plan: ${cliente.plan?.toString() ?: "Desconocido"}
-        Fecha del pago: $fechaActual
-        No. de Contrato: ${cliente.no_contrato ?: "Desconocido"}
-        Fecha de Corte: ${cliente.f_corte ?: "Desconocido"}
-        Correo: ${cliente.correo ?: "Desconocido"}
-        El pago fue de: $$pago
-        Credito: $credito
-        Observaciones: $observaciones
-        El Encargado es: $usuario
-    """.trimIndent()
+            Nombre: ${cliente.nombre ?: "Desconocido"}
+            Teléfono: ${cliente.telefono?.toString() ?: "Desconocido"}
+            Dirección: ${cliente.direccion ?: "Desconocido"}
+            Plan: ${cliente.plan?.toString() ?: "Desconocido"}
+            Fecha del pago: $fechaActual
+            No. de Contrato: ${cliente.no_contrato ?: "Desconocido"}
+            Fecha de Corte: ${cliente.f_corte ?: "Desconocido"}
+            Correo: ${cliente.correo ?: "Desconocido"}
+            El pago fue de: $$pago
+            Crédito: $credito
+            Observaciones: $observaciones
+            El Encargado es: $usuario
+        """.trimIndent()
 
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = "message/rfc822"
@@ -156,7 +192,14 @@ class PagoActivity : AppCompatActivity() {
 
     }
 
-    private fun goToTiket(cliente: Clientes, fechaActual: String, usuario: String, credito: String, observaciones: String, pago: Int) {
+    private fun goToTiket(
+        cliente: Clientes,
+        fechaActual: String,
+        usuario: String,
+        credito: String,
+        observaciones: String,
+        pago: Int
+    ) {
         //val intent = Intent(this, OtraActivity::class.java) Tiket
         intent.putExtra("cliente", cliente)
         intent.putExtra("EXTRA_USUARIO", usuario)
@@ -166,8 +209,16 @@ class PagoActivity : AppCompatActivity() {
         intent.putExtra("pago", pago)
     }
 
-    private fun goToFirebase(cliente: Clientes, fechaActual: String, usuario: String, credito: String, observaciones: String, pago: Int) {
-        val database = FirebaseDatabase.getInstance("https://crud-jgarrix99-default-rtdb.firebaseio.com/") //Cambiar base
+    private fun goToFirebase(
+        cliente: Clientes,
+        fechaActual: String,
+        usuario: String,
+        credito: String,
+        observaciones: String,
+        pago: Int
+    ) {
+        val database =
+            FirebaseDatabase.getInstance("https://crud-jgarrix99-default-rtdb.firebaseio.com/") //Cambiar base
         val referencia = database.reference.child("pagos")
 
         val idPago = UUID.randomUUID().toString()
@@ -180,7 +231,10 @@ class PagoActivity : AppCompatActivity() {
         val f_corte = cliente.f_corte ?: "Desconocido"
         val correo = cliente.correo ?: "Desconocido"
 
-        Log.d("PagoActivity", "Guardando pago: $nombre, $telefono, $direccion, $plan, $no_contrato, $f_corte, $correo, Fecha: $fechaActual")
+        Log.d(
+            "PagoActivity",
+            "Guardando pago: $nombre, $telefono, $direccion, $plan, $no_contrato, $f_corte, $correo, Fecha: $fechaActual"
+        )
 
         val datosPago = mapOf(
             "nombre" to nombre,
@@ -202,9 +256,15 @@ class PagoActivity : AppCompatActivity() {
                 Toast.makeText(this, "Pago guardado en Firebase", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener { e ->
-                // Mostrar el error que ocurrió al guardar
                 Log.e("PagoActivity", "Error al guardar el pago: ${e.message}")
                 Toast.makeText(this, "Error al guardar el pago", Toast.LENGTH_SHORT).show()
+                AlertDialog.Builder(this)
+                    .setTitle("❌ Error")
+                    .setMessage("Hubo un problema al procesar el pago. Por favor, intenta nuevamente.")
+                    .setPositiveButton("OK") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .show()
             }
 
     }
