@@ -52,7 +52,7 @@ class InicioActivity : AppCompatActivity() {
     private fun mostrarDialogoInformacion() {
         AlertDialog.Builder(this)
             .setTitle("Información del Programa")
-            .setMessage("Este programa fue desarrollado por María Luisa Aguilar Pérez y Javier Yépez Ramírez, con la supervisión y apoyo.")
+            .setMessage("Este programa fue desarrollado por María Luisa Aguilar Pérez y Javier Yépez Ramírez, con la supervisión y apoyo de: Lesli Yared Villegas Fonseca y Juanita del Carmen Mendoza Ornelas.")
             .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
             .show()
     }

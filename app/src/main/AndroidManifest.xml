@@ -13,6 +13,9 @@
         android:theme="@style/Theme.AppEvolve"
         tools:targetApi="31">
         <activity
+            android:name=".Ticket.CancelarPagoActivity"
+            android:exported="false" />
+        <activity
             android:name=".ticket.TicketActivity"
             android:exported="false" />
         <activity
