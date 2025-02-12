@@ -84,7 +84,6 @@ class UsuariosActivity : AppCompatActivity() {
         val filteredList = listaUsuarios.filter {
             it.nombre?.contains(query ?: "", ignoreCase = true) == true || it.telefono?.toString()?.contains(query ?: "", ignoreCase = true) == true
         }
-        // Actualiza la lista en el adaptador
         adapter.updateList(filteredList)
     }
 }
