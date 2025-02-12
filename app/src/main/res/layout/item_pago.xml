@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="#333333"
+    app:cardCornerRadius="16dp">
+
+<LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:background="#333333"
     android:paddingVertical="20dp"
     android:paddingHorizontal="30dp"
     android:orientation="vertical">
@@ -40,6 +47,7 @@
 
         <CheckBox
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
             android:buttonTint="@color/item_background"
             android:id="@+id/cb350">
@@ -50,6 +58,14 @@
             android:buttonTint="@color/item_background"
             android:layout_height="wrap_content"
             android:id="@+id/cb450">
+        </CheckBox>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:buttonTint="@color/item_background"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:id="@+id/cbCredito">
         </CheckBox>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -65,6 +81,7 @@
             android:textColor="@color/white"
             android:textSize="15dp"
             android:text="$250">
+
         </TextView>
 
         <TextView
@@ -84,13 +101,25 @@
             android:text="$450">
         </TextView>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="15dp"
+            android:textSize="15dp"
+            android:text="Credito">
+        </TextView>
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <EditText
+        android:layout_marginTop="20dp"
         android:id="@+id/etCredito"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         android:hint="Ingresa monto a pagar"
+        android:textColor="@color/white"
         android:textColorHint="@color/white">
     </EditText>
 
@@ -98,8 +127,11 @@
         android:id="@+id/etObservaciones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/white"
         android:hint="Observaciones"
-        android:textColorHint="@color/white">
+        android:textColorHint="@color/white"
+        android:layout_marginBottom="20dp">
     </EditText>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -128,3 +160,4 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </LinearLayout>
+</androidx.cardview.widget.CardView>

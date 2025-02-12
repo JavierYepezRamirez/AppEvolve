@@ -26,6 +26,7 @@ class PagoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_pago)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -35,114 +36,94 @@ class PagoActivity : AppCompatActivity() {
         val cliente = intent.getSerializableExtra("cliente") as? Clientes ?: Clientes()
         val usuario: String = intent.extras?.getString("EXTRA_USUARIO").orEmpty()
 
-        val correo = cliente.correo ?: "Desconocido"
-        val direccion = cliente.direccion ?: "Desconocido"
-        val no_contrato = cliente.no_contrato ?: "Desconocido"
-        val f_corte = cliente.f_corte ?: "Desconocido"
-        val nombre = cliente.nombre ?: "Desconocido"
-        val plan = cliente.plan?.toString() ?: "Desconocido"
-        val telefono = cliente.telefono?.toString() ?: "Desconocido"
-
         val fechaActual: String = LocalDate.now().toString()
 
-        val tvNombre = findViewById<TextView>(R.id.tvNombre)
-        val tvTelefono = findViewById<TextView>(R.id.tvTelefono)
-        val tvDireccion = findViewById<TextView>(R.id.tvDireccion)
-        val tvPlan = findViewById<TextView>(R.id.tvPan)
-        val tvFecha = findViewById<TextView>(R.id.tvFecha)
+        findViewById<TextView>(R.id.tvNombre).text = "Nombre: ${cliente.nombre ?: "Desconocido"}"
+        findViewById<TextView>(R.id.tvTelefono).text = "Telefono: ${cliente.telefono ?: "Desconocido"}"
+        findViewById<TextView>(R.id.tvDireccion).text = "Direccion: ${cliente.direccion ?: "Desconocido"}"
+        findViewById<TextView>(R.id.tvPan).text = "Plan($): ${cliente.plan ?: "Desconocido"}"
+        findViewById<TextView>(R.id.tvFecha).text = "Fecha: $fechaActual"
 
-        tvNombre.text = "Nombre: $nombre"
-        tvTelefono.text = "Telefono: $telefono"
-        tvDireccion.text = "Direccion: $direccion"
-        tvPlan.text = "Plan($): $plan"
-        tvFecha.text = "Fecha: $fechaActual"
+        findViewById<AppCompatButton>(R.id.btnCancelar).setOnClickListener { mostrarDialogoCancelar(usuario) }
+        findViewById<AppCompatButton>(R.id.btnAceptar).setOnClickListener { mostrarDialogoPago(cliente, fechaActual, usuario) }
+    }
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+    private fun mostrarDialogoCancelar(usuario: String) {
+        val dialogView = layoutInflater.inflate(R.layout.item_dialog, null)
+        val dialog = AlertDialog.Builder(this).setView(dialogView).create()
+
+        dialogView.findViewById<Button>(R.id.btnYes).setOnClickListener {
+            startActivity(Intent(this, UsuariosActivity::class.java).apply {
+                putExtra("EXTRA_USUARIO", usuario)
+            })
+            finish()
+            dialog.dismiss()
         }
 
-        val btnAceptar = findViewById<AppCompatButton>(R.id.btnAceptar)
-        val btnCancelar = findViewById<AppCompatButton>(R.id.btnCancelar)
-
-        btnCancelar.setOnClickListener {
-            // Inflar el diseño personalizado del diálogo
-            val dialogView = layoutInflater.inflate(R.layout.item_dialog, null)
-
-            // Crear el AlertDialog
-            val dialog = AlertDialog.Builder(this)
-                .setView(dialogView)
-                .create()
-
-            // Configurar acciones de los botones
-            dialogView.findViewById<Button>(R.id.btnYes).setOnClickListener {
-                val intent = Intent(this, UsuariosActivity::class.java)
-                intent.putExtra("EXTRA_USUARIO", usuario)
-                startActivity(intent)
-                finish() // Cierra la actividad
-                dialog.dismiss()
-            }
-
-            dialogView.findViewById<Button>(R.id.btnNo).setOnClickListener {
-                dialog.dismiss() // Cierra solo la alerta
-            }
-            // Mostrar el diálogo
-            dialog.show()
+        dialogView.findViewById<Button>(R.id.btnNo).setOnClickListener {
+            dialog.dismiss()
         }
 
-        btnAceptar.setOnClickListener{
-            val dialogView = layoutInflater.inflate(R.layout.item_pago, null)
+        dialog.show()
+    }
 
-            val cb250 = dialogView.findViewById<CheckBox>(R.id.cb250)
-            val cb350 = dialogView.findViewById<CheckBox>(R.id.cb350)
-            val cb450 = dialogView.findViewById<CheckBox>(R.id.cb450)
-            val etCredito = dialogView.findViewById<EditText>(R.id.etCredito)
-            val etObservaciones = dialogView.findViewById<EditText>(R.id.etObservaciones)
-            var pago = 0
+    private fun mostrarDialogoPago(cliente: Clientes, fechaActual: String, usuario: String) {
+        val dialogView = layoutInflater.inflate(R.layout.item_pago, null)
+        val dialog = AlertDialog.Builder(this).setView(dialogView).create()
 
-            if (cb250.isChecked) {
-                pago = 250
-            }
-            if (cb350.isChecked) {
-                pago = 350
-            }
-            if (cb450.isChecked) {
-                pago = 450
-            }
+        val cbCredito = dialogView.findViewById<CheckBox>(R.id.cbCredito)
+        val etCredito = dialogView.findViewById<EditText>(R.id.etCredito)
+        val btnAceptarItem = dialogView.findViewById<Button>(R.id.btnAceptar)
 
-            val credito = if (etCredito.text.toString().isBlank()) "Ninguno" else etCredito.text.toString()
-            val observaciones = if (etObservaciones.text.toString().isBlank()) "Ninguno" else etObservaciones.text.toString()
+        etCredito.isEnabled = false
+        btnAceptarItem.isEnabled = false
 
-            if (etCredito.text.toString().isBlank()) etCredito.setText("Ninguno")
-            if (etObservaciones.text.toString().isBlank()) etObservaciones.setText("Ninguno")
+        val checkBoxes = listOf(
+            dialogView.findViewById<CheckBox>(R.id.cb250),
+            dialogView.findViewById<CheckBox>(R.id.cb350),
+            dialogView.findViewById<CheckBox>(R.id.cb450),
+            cbCredito
+        )
 
-            val dialog = AlertDialog.Builder(this)
-                .setView(dialogView)
-                .create()
-
-            dialogView.findViewById<Button>(R.id.btnAceptar).setOnClickListener {
-                androidx.appcompat.app.AlertDialog.Builder(this)
-                    .setTitle("Pago Exitoso")
-                    .setMessage("Su pago fue correctamente capturado")
-                    .setPositiveButton("OK") { dialog, _ ->
-                        goToTiket(cliente, fechaActual, usuario, credito, observaciones, pago)
-                        goToEmail(cliente, fechaActual, usuario, credito, observaciones, pago)
-                        goToFirebase(cliente, fechaActual, usuario, credito, observaciones, pago)
-
-                        finish()
-                    }
-                    .show()
-            }
-
-            dialogView.findViewById<Button>(R.id.btnCancelar).setOnClickListener {
-                dialog.dismiss()
-            }
-            dialog.show()}
-
+        fun actualizarEstado() {
+            btnAceptarItem.isEnabled = checkBoxes.any { it.isChecked }
+            etCredito.isEnabled = cbCredito.isChecked
+            if (!cbCredito.isChecked) etCredito.text.clear()
         }
 
-    private fun goToEmail(cliente: Clientes, fechaActual: String, usuario: String, credito: String, observaciones: String, pago: Int) {
+        checkBoxes.forEach { it.setOnCheckedChangeListener { _, _ -> actualizarEstado() } }
+
+        btnAceptarItem.setOnClickListener {
+            val pago = when {
+                checkBoxes[0].isChecked -> 250
+                checkBoxes[1].isChecked -> 350
+                checkBoxes[2].isChecked -> 450
+                else -> 0
+            }
+
+            val credito = etCredito.text.toString().ifBlank { "Ninguno" }
+            val observaciones = dialogView.findViewById<EditText>(R.id.etObservaciones).text.toString().ifBlank { "Ninguno" }
+
+            AlertDialog.Builder(this)
+                .setTitle("Pago Exitoso")
+                .setMessage("Su pago fue correctamente capturado")
+                .setPositiveButton("OK") { _, _ ->
+                    goToTiket(cliente, fechaActual, usuario, credito, observaciones, pago)
+                    goToEmail(cliente, fechaActual, usuario, credito, observaciones, pago)
+                    goToFirebase(cliente, fechaActual, usuario, credito, observaciones, pago)
+                    finish()
+                }
+                .show()
+        }
+
+        dialogView.findViewById<Button>(R.id.btnCancelar).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+        private fun goToEmail(cliente: Clientes, fechaActual: String, usuario: String, credito: String, observaciones: String, pago: Int) {
         val destinatario = "javier_yepez@outlook.com"  //Cambiar por correo de Felipe
         val asunto = "Pago registrado - ${cliente.nombre}, registrado por $usuario"
         val mensaje = """
