@@ -6,6 +6,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -90,31 +92,57 @@ class PagoActivity : AppCompatActivity() {
         }
 
         btnAceptar.setOnClickListener{
-            val dialogView = layoutInflater.inflate(R.layout.item_dialog, null)
+            val dialogView = layoutInflater.inflate(R.layout.item_pago, null)
 
+            val cb250 = dialogView.findViewById<CheckBox>(R.id.cb250)
+            val cb350 = dialogView.findViewById<CheckBox>(R.id.cb350)
+            val cb450 = dialogView.findViewById<CheckBox>(R.id.cb450)
+            val etCredito = dialogView.findViewById<EditText>(R.id.etCredito)
+            val etObservaciones = dialogView.findViewById<EditText>(R.id.etObservaciones)
+            var pago = 0
+
+            if (cb250.isChecked) {
+                pago = 250
+            }
+            if (cb350.isChecked) {
+                pago = 350
+            }
+            if (cb450.isChecked) {
+                pago = 450
+            }
+
+            val credito = if (etCredito.text.toString().isBlank()) "Ninguno" else etCredito.text.toString()
+            val observaciones = if (etObservaciones.text.toString().isBlank()) "Ninguno" else etObservaciones.text.toString()
+
+            if (etCredito.text.toString().isBlank()) etCredito.setText("Ninguno")
+            if (etObservaciones.text.toString().isBlank()) etObservaciones.setText("Ninguno")
 
             val dialog = AlertDialog.Builder(this)
                 .setView(dialogView)
                 .create()
 
-            dialogView.findViewById<Button>(R.id.btnYes).setOnClickListener {
-                goToTiket(cliente, fechaActual, usuario)
-                goToEmail(cliente, fechaActual, usuario)
-                goToFirebase(cliente, fechaActual, usuario)
-                finish()
-                dialog.dismiss()
+            dialogView.findViewById<Button>(R.id.btnAceptar).setOnClickListener {
+                androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle("Pago Exitoso")
+                    .setMessage("Su pago fue correctamente capturado")
+                    .setPositiveButton("OK") { dialog, _ ->
+                        goToTiket(cliente, fechaActual, usuario, credito, observaciones, pago)
+                        goToEmail(cliente, fechaActual, usuario, credito, observaciones, pago)
+                        goToFirebase(cliente, fechaActual, usuario, credito, observaciones, pago)
+
+                        finish()
+                    }
+                    .show()
             }
 
-            dialogView.findViewById<Button>(R.id.btnNo).setOnClickListener {
+            dialogView.findViewById<Button>(R.id.btnCancelar).setOnClickListener {
                 dialog.dismiss()
             }
-
-            // Mostrar el diálogo
             dialog.show()}
 
         }
 
-    private fun goToEmail(cliente: Clientes, fechaActual: String, usuario: String) {
+    private fun goToEmail(cliente: Clientes, fechaActual: String, usuario: String, credito: String, observaciones: String, pago: Int) {
         val destinatario = "javier_yepez@outlook.com"  //Cambiar por correo de Felipe
         val asunto = "Pago registrado - ${cliente.nombre}, registrado por $usuario"
         val mensaje = """
@@ -126,6 +154,9 @@ class PagoActivity : AppCompatActivity() {
         No. de Contrato: ${cliente.no_contrato ?: "Desconocido"}
         Fecha de Corte: ${cliente.f_corte ?: "Desconocido"}
         Correo: ${cliente.correo ?: "Desconocido"}
+        El pago fue de: $$pago
+        Credito: $credito
+        Observaciones: $observaciones
         El Encargado es: $usuario
     """.trimIndent()
 
@@ -144,13 +175,17 @@ class PagoActivity : AppCompatActivity() {
 
     }
 
-    private fun goToTiket(cliente: Clientes, fechaActual: String, usuario: String) {
+    private fun goToTiket(cliente: Clientes, fechaActual: String, usuario: String, credito: String, observaciones: String, pago: Int) {
         //val intent = Intent(this, OtraActivity::class.java) Tiket
         intent.putExtra("cliente", cliente)
         intent.putExtra("EXTRA_USUARIO", usuario)
+        intent.putExtra("fecha", fechaActual)
+        intent.putExtra("credito", credito)
+        intent.putExtra("observaciones", observaciones)
+        intent.putExtra("pago", pago)
     }
 
-    private fun goToFirebase(cliente: Clientes, fechaActual: String, usuario: String) {
+    private fun goToFirebase(cliente: Clientes, fechaActual: String, usuario: String, credito: String, observaciones: String, pago: Int) {
         val database = FirebaseDatabase.getInstance("https://crud-jgarrix99-default-rtdb.firebaseio.com/") //Cambiar base
         val referencia = database.reference.child("pagos")
 
@@ -175,7 +210,10 @@ class PagoActivity : AppCompatActivity() {
             "no_contrato" to no_contrato,
             "f_corte" to f_corte,
             "correo" to correo,
-            "usuario" to usuario
+            "usuario" to usuario,
+            "credito" to credito,
+            "descripciones" to observaciones,
+            "pago" to pago
         )
 
         referencia.child(idPago).setValue(datosPago)
