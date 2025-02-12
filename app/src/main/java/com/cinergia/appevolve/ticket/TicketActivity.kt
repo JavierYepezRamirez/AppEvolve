@@ -23,7 +23,7 @@ import java.util.UUID
 class TicketActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ticket2)
+        setContentView(R.layout.activity_ticket)
     ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -42,31 +42,36 @@ class TicketActivity : AppCompatActivity() {
     findViewById<TextView>(R.id.tvPlan).text = "Plan($): ${cliente.plan ?: "Desconocido"}"
     findViewById<TextView>(R.id.tvFecha).text = "Fecha: $fecha"
 
+    findViewById<Button>(R.id.btnTerminar).setOnClickListener {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("EXTRA_USUARIO", usuario)
+        startActivity(intent)
+    }
 
+    findViewById<Button>(R.id.btnCancelarp).setOnClickListener {
+        val dialogView = layoutInflater.inflate(R.layout.item_dialog2, null)
+        val dialog = AlertDialog.Builder(this).setView(dialogView).create()
 
-        findViewById<AppCompatButton>(R.id.btnTerminar).setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("EXTRA_USUARIO", usuario)
-            startActivity(intent)
+        dialogView.findViewById<Button>(R.id.btnYes).setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("✅ Cancelación Exitosa")
+                .setMessage("Por favor, envía el ticket de cancelar por correo.")
+                .setPositiveButton("OK") { _, _ ->
+                    goToTiket(cliente, fecha, usuario, credito, observaciones, pago)
+                    goToEmail(cliente, fecha, usuario, credito, observaciones, pago)
+                    goToFirebase(cliente, fecha, usuario, credito, observaciones, pago)
+                    dialog.dismiss()
+                }
+                .show()
         }
-        findViewById<AppCompatButton>(R.id.btnCancelar).setOnClickListener {
-            val dialogView = layoutInflater.inflate(R.layout.item_dialog2, null)
-            val dialog = AlertDialog.Builder(this).setView(dialogView).create()
 
-            dialogView.findViewById<Button>(R.id.btnYes).setOnClickListener {
-                AlertDialog.Builder(this)
-                    .setTitle("✅ Cancelación Exitosa")
-                    .setMessage("Por favor, envía el ticket de pago por correo.")
-                    .setPositiveButton("OK") { _, _ ->
-                        goToTiket(cliente, fecha, usuario, credito, observaciones, pago)
-                        goToEmail(cliente, fecha, usuario, credito, observaciones, pago)
-                        goToFirebase(cliente, fecha, usuario, credito, observaciones, pago)
-                    }
-            }
-            dialogView.findViewById<Button>(R.id.btnNo).setOnClickListener {
-                dialog.dismiss()
-            }
+        dialogView.findViewById<Button>(R.id.btnNo).setOnClickListener {
+            dialog.dismiss()
         }
+
+        dialog.show()
+    }
+
     }
     private fun goToEmail(
         cliente: Clientes,
