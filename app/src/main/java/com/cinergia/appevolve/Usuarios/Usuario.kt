@@ -7,8 +7,8 @@ data class Clientes(
     val no_contrato: String? = null,
     val f_corte: String? = null,
     val nombre: String? = null,
-    val plan: Any? = null,  // Puede ser String o Int en Firebase
-    val telefono: Any? = null  // Puede ser String o Int en Firebase
+    val plan: Any? = null,
+    val telefono: Any? = null
 ) : Serializable {
 
     fun obtenerNombre(): String {

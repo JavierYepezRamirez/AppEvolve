@@ -21,11 +21,9 @@ class UsuarioAdapter(
     override fun onBindViewHolder(holder: UsuarioViewHolder, position: Int) {
         val usuario = listaUsuarios[position]
 
-        // Manejo seguro de valores nulos y vacíos
         holder.tvNombre.text = usuario.nombre?.ifBlank { "Desconocido" } ?: "Desconocido"
         holder.tvTelefono.text = usuario.obtenerTelefono()
 
-        // Configurar evento de clic en el item
         holder.itemView.setOnClickListener { listener(usuario) }
     }
 
@@ -33,7 +31,7 @@ class UsuarioAdapter(
 
     fun updateList(newList: List<Clientes>) {
         listaUsuarios = newList
-        notifyDataSetChanged() // Notifica al adaptador que se ha actualizado la lista
+        notifyDataSetChanged()
     }
 
     class UsuarioViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
