@@ -19,7 +19,7 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TICKET DE PAGO"
+        android:text="TICKET DE PAGO CANCELADO"
         android:textSize="20sp"
         android:fontFamily="@font/freeman_regular"
         android:textStyle="bold"
@@ -41,7 +41,7 @@
             android:background="@drawable/card_border">
 
             <TextView
-                android:id="@+id/tvNombre"
+                android:id="@+id/tvNombrec"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre de Usuario"
@@ -50,7 +50,7 @@
                 android:layout_marginBottom="8dp"/>
 
             <TextView
-                android:id="@+id/tvTelefono"
+                android:id="@+id/tvTelefonoc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Teléfono de Usuario"
@@ -59,7 +59,7 @@
                 android:layout_marginBottom="8dp"/>
 
             <TextView
-                android:id="@+id/tvDireccion"
+                android:id="@+id/tvDireccionc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Dirección de Usuario"
@@ -68,7 +68,7 @@
                 android:layout_marginBottom="8dp"/>
 
             <TextView
-                android:id="@+id/tvPlan"
+                android:id="@+id/tvPlanc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Plan de Usuario"
@@ -77,7 +77,7 @@
                 android:layout_marginBottom="8dp"/>
 
             <TextView
-                android:id="@+id/tvFecha"
+                android:id="@+id/tvFechac"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fecha de Pago"
@@ -87,10 +87,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Completado"
+                android:text="Cancelado"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@color/verde">
+                android:textColor="@color/red">
             </TextView>
         </LinearLayout>
 
@@ -104,21 +104,13 @@
         android:layout_marginTop="10dp">
 
         <Button
-            android:id="@+id/btnYes"
+            android:id="@+id/btnYesc"
             android:layout_width="120dp"
             android:layout_height="60dp"
             android:text="Terminar"
             android:backgroundTint="#14D51C"
             android:textColor="@color/white"
             android:layout_marginEnd="16dp"/>
-
-        <Button
-            android:id="@+id/btnNo"
-            android:layout_width="120dp"
-            android:layout_height="60dp"
-            android:text="Cancelar Pago"
-            android:backgroundTint="#F81403"
-            android:textColor="@color/white"/>
     </LinearLayout>
 
 </LinearLayout>

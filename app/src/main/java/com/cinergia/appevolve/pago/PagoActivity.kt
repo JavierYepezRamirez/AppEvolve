@@ -136,7 +136,7 @@ class PagoActivity : AppCompatActivity() {
 
             AlertDialog.Builder(this)
                 .setTitle("✅ Pago Exitoso")
-                .setMessage("Por favor, revisa tu correo para el envío. 💌")
+                .setMessage("Por favor, envía el ticket de pago por correo.")
                 .setPositiveButton("OK") { _, _ ->
                     goToTiket(cliente, fechaActual, usuario, credito, observaciones, pago)
                     goToEmail(cliente, fechaActual, usuario, credito, observaciones, pago)

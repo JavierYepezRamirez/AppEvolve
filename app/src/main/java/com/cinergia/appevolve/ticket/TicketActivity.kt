@@ -18,6 +18,7 @@ class TicketActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets }
+
     val cliente = intent.getSerializableExtra("cliente")as? Clientes ?: Clientes()
     val usuario:String = intent.extras?.getString("EXTRA_USUARIO").orEmpty()
     val fecha:String = intent.extras?.getString("fecha").orEmpty()
