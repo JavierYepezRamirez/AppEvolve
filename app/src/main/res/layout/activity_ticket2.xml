@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -9,8 +10,8 @@
     <ImageView
         android:id="@+id/viewLogo"
         android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:src="@drawable/logoblanco">
+        android:layout_height="90dp"
+        android:src="@drawable/evolvenegro">
     </ImageView>
 
     <TextView
@@ -29,8 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="16dp"
-        android:cardElevation="20dp">
+        android:layout_margin="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                 android:layout_marginBottom="8dp"/>
 
             <TextView
-                android:id="@+id/tvPan"
+                android:id="@+id/tvPlan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Plan de Usuario"
@@ -97,7 +97,7 @@
             android:id="@+id/btnYes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sí"
+            android:text="Terminar"
             android:backgroundTint="#14D51C"
             android:textColor="@color/white"
             android:layout_marginEnd="16dp"/>
@@ -106,7 +106,7 @@
             android:id="@+id/btnNo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No"
+            android:text="Cancelar Pago"
             android:backgroundTint="#F81403"
             android:textColor="@color/white"/>
     </LinearLayout>

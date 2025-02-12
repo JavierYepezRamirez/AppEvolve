@@ -17,6 +17,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.cinergia.appevolve.R
 import com.cinergia.appevolve.Usuarios.UsuariosActivity
+import com.cinergia.appevolve.ticket.TicketActivity
 import com.google.firebase.database.FirebaseDatabase
 import java.time.LocalDate
 import java.util.UUID
@@ -201,13 +202,14 @@ class PagoActivity : AppCompatActivity() {
         observaciones: String,
         pago: Int
     ) {
-        //val intent = Intent(this, OtraActivity::class.java) Tiket
+        val intent = Intent(this, TicketActivity::class.java)
         intent.putExtra("cliente", cliente)
         intent.putExtra("EXTRA_USUARIO", usuario)
         intent.putExtra("fecha", fechaActual)
         intent.putExtra("credito", credito)
         intent.putExtra("observaciones", observaciones)
         intent.putExtra("pago", pago)
+        startActivity(intent)
     }
 
     private fun goToFirebase(

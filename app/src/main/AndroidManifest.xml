@@ -16,9 +16,6 @@
             android:name=".ticket.TicketActivity"
             android:exported="false" />
         <activity
-            android:name=".TicketActivity"
-            android:exported="false" />
-        <activity
             android:name=".pago.PagoActivity"
             android:exported="false" />
         <activity
