@@ -123,7 +123,7 @@ class PagoActivity : AppCompatActivity() {
         dialog.show()
     }
 
-        private fun goToEmail(cliente: Clientes, fechaActual: String, usuario: String, credito: String, observaciones: String, pago: Int) {
+    private fun goToEmail(cliente: Clientes, fechaActual: String, usuario: String, credito: String, observaciones: String, pago: Int) {
         val destinatario = "javier_yepez@outlook.com"  //Cambiar por correo de Felipe
         val asunto = "Pago registrado - ${cliente.nombre}, registrado por $usuario"
         val mensaje = """
