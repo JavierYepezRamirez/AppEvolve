@@ -122,7 +122,6 @@ class PagoActivity : AppCompatActivity() {
                 .create()
 
             dialogView.findViewById<Button>(R.id.btnAceptar).setOnClickListener {
-                // Mostrar el diálogo de confirmación
                 androidx.appcompat.app.AlertDialog.Builder(this)
                     .setTitle("Pago Exitoso")
                     .setMessage("Su pago fue correctamente capturado")
