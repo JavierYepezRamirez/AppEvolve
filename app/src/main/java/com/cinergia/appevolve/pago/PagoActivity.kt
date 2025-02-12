@@ -161,6 +161,7 @@ class PagoActivity : AppCompatActivity() {
         pago: Int
     ) {
         val destinatario = "javier_yepez@outlook.com"
+
         val asunto = "Pago registrado - ${cliente.nombre}, registrado por $usuario"
         val mensaje = """
             Nombre: ${cliente.nombre ?: "Desconocido"}
