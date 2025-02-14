@@ -51,9 +51,11 @@ class LoginActivity : AppCompatActivity() {
             when (usuario) {
                 "Usuario1" -> {
                     validarCredenciales(usuario, contrasena, "123456")
+                    etContrasena.setText("")
                 }
                 "Usuario2" -> {
                     validarCredenciales(usuario, contrasena, "654321")
+                    etContrasena.setText("")
                 }
             }
         }

@@ -35,6 +35,7 @@ class UsuariosActivity : AppCompatActivity() {
              intent.putExtra("cliente", cliente)
              intent.putExtra("EXTRA_USUARIO", usuario)
              startActivity(intent)
+            finish()
         }
         recyclerView.adapter = adapter
 

@@ -138,6 +138,7 @@ class PagoActivity : AppCompatActivity() {
                 .setTitle("✅ Pago Exitoso")
                 .setMessage("Por favor, envía el ticket de pago por correo.")
                 .setPositiveButton("OK") { _, _ ->
+                    dialog.dismiss()
                     goToTiket(cliente, fechaActual, usuario, credito, observaciones, pago)
                     goToEmail(cliente, fechaActual, usuario, credito, observaciones, pago)
                     goToFirebase(cliente, fechaActual, usuario, credito, observaciones, pago)
@@ -210,6 +211,7 @@ class PagoActivity : AppCompatActivity() {
         intent.putExtra("observaciones", observaciones)
         intent.putExtra("pago", pago)
         startActivity(intent)
+        finish()
     }
 
     private fun goToFirebase(
