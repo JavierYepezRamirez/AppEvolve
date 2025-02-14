@@ -45,5 +45,6 @@ class CancelarPagoActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("EXTRA_USUARIO", usuario)
         startActivity(intent)
+        finish()
     }
 }

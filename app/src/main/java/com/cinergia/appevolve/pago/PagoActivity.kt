@@ -211,6 +211,7 @@ class PagoActivity : AppCompatActivity() {
         intent.putExtra("observaciones", observaciones)
         intent.putExtra("pago", pago)
         startActivity(intent)
+        finish()
     }
 
     private fun goToFirebase(
