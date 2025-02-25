@@ -59,15 +59,6 @@
                 android:layout_marginBottom="8dp"/>
 
             <TextView
-                android:id="@+id/tvDireccion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dirección de Usuario"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
                 android:id="@+id/tvPlan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

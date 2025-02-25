@@ -38,7 +38,6 @@ class TicketActivity : AppCompatActivity() {
 
     findViewById<TextView>(R.id.tvNombre).text = "Nombre: ${cliente.nombre ?: "Desconocido"}"
     findViewById<TextView>(R.id.tvTelefono).text = "Teléfono: ${cliente.telefono ?: "Desconocido"}"
-    findViewById<TextView>(R.id.tvDireccion).text = "Dirección: ${cliente.direccion ?: "Desconocido"}"
     findViewById<TextView>(R.id.tvPlan).text = "Plan($): ${cliente.plan ?: "Desconocido"}"
     findViewById<TextView>(R.id.tvFecha).text = "Fecha: $fecha"
 
@@ -58,9 +57,9 @@ class TicketActivity : AppCompatActivity() {
                     .setTitle("✅ Cancelación Exitosa")
                     .setMessage("Por favor, envía el ticket de pago por correo.")
                     .setPositiveButton("OK") { _, _ ->
-                        goToTiket(cliente, fecha, usuario, credito, observaciones, pago)
-                        goToEmail(cliente, fecha, usuario, credito, observaciones, pago)
-                        goToFirebase(cliente, fecha, usuario, credito, observaciones, pago)
+                        goToTiket(cliente, fecha, usuario, observaciones, pago)
+                        goToEmail(cliente, fecha, usuario, observaciones, pago)
+                        goToFirebase(cliente, fecha, usuario, observaciones, pago)
                     }
             }
             dialogView.findViewById<Button>(R.id.btnNo).setOnClickListener {
@@ -72,7 +71,6 @@ class TicketActivity : AppCompatActivity() {
         cliente: Clientes,
         fechaActual: String,
         usuario: String,
-        credito: String,
         observaciones: String,
         pago: Int
     ) {
@@ -82,14 +80,14 @@ class TicketActivity : AppCompatActivity() {
         val mensaje = """
             Nombre: ${cliente.nombre ?: "Desconocido"}
             Teléfono: ${cliente.telefono?.toString() ?: "Desconocido"}
-            Dirección: ${cliente.direccion ?: "Desconocido"}
+            Coordenadas: ${cliente.coordenadas ?: "Desconocido"}
+            Comunidad: ${cliente.comunidad ?: "Desconocido"}
             Plan: ${cliente.plan?.toString() ?: "Desconocido"}
             Fecha del pago: $fechaActual
             No. de Contrato: ${cliente.no_contrato ?: "Desconocido"}
             Fecha de Corte: ${cliente.f_corte ?: "Desconocido"}
             Correo: ${cliente.correo ?: "Desconocido"}
             El pago fue de: $$pago
-            Crédito: $credito
             Observaciones: $observaciones
             El Encargado es: $usuario
         """.trimIndent()
@@ -113,7 +111,6 @@ class TicketActivity : AppCompatActivity() {
         cliente: Clientes,
         fechaActual: String,
         usuario: String,
-        credito: String,
         observaciones: String,
         pago: Int
     ) {
@@ -121,7 +118,6 @@ class TicketActivity : AppCompatActivity() {
         intent.putExtra("cliente", cliente)
         intent.putExtra("EXTRA_USUARIO", usuario)
         intent.putExtra("fecha", fechaActual)
-        intent.putExtra("credito", credito)
         intent.putExtra("observaciones", observaciones)
         intent.putExtra("pago", pago)
         startActivity(intent)
@@ -131,7 +127,6 @@ class TicketActivity : AppCompatActivity() {
         cliente: Clientes,
         fechaActual: String,
         usuario: String,
-        credito: String,
         observaciones: String,
         pago: Int
     ) {
@@ -143,7 +138,8 @@ class TicketActivity : AppCompatActivity() {
 
         val nombre = cliente.nombre ?: "Desconocido"
         val telefono = cliente.telefono?.toString() ?: "Desconocido"
-        val direccion = cliente.direccion ?: "Desconocido"
+        val coordenadas = cliente.coordenadas ?: "Desconocido"
+        val comunidad = cliente.comunidad ?: "Desconocido"
         val plan = cliente.plan?.toString() ?: "Desconocido"
         val no_contrato = cliente.no_contrato ?: "Desconocido"
         val f_corte = cliente.f_corte ?: "Desconocido"
@@ -152,20 +148,20 @@ class TicketActivity : AppCompatActivity() {
 
         Log.d(
             "PagoActivity",
-            "Guardando pago: $nombre, $telefono, $direccion, $plan, $no_contrato, $f_corte, $correo, Fecha: $fechaActual"
+            "Guardando pago: $nombre, $telefono, $coordenadas. $comunidad, $plan, $no_contrato, $f_corte, $correo, Fecha: $fechaActual"
         )
 
         val datosPago = mapOf(
             "nombre" to nombre,
             "telefono" to telefono,
-            "direccion" to direccion,
+            "coordenadas" to coordenadas,
+            "comunidad" to comunidad,
             "plan" to plan,
             "fecha" to fechaActual,
             "no_contrato" to no_contrato,
             "f_corte" to f_corte,
             "correo" to correo,
             "usuario" to usuario,
-            "credito" to credito,
             "descripciones" to observaciones,
             "pago" to pago,
             "status" to status

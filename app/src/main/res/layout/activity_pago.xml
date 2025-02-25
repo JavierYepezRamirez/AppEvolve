@@ -89,21 +89,6 @@
                 app:layout_constraintVertical_bias="0.420">
             </TextView>
 
-            <TextView
-                android:id="@+id/tvDireccion"
-                android:layout_width="300dp"
-                android:layout_height="80dp"
-                android:layout_margin="16dp"
-                android:text="Direccion de Usuario"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.20"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.620">
-            </TextView>
 
             <TextView
                 android:id="@+id/tvPan"
@@ -118,7 +103,7 @@
                 app:layout_constraintHorizontal_bias="0.20"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.820">
+                app:layout_constraintVertical_bias="0.620">
             </TextView>
 
             <TextView
@@ -134,7 +119,7 @@
                 app:layout_constraintHorizontal_bias="0.20"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintVertical_bias="0.820">
             </TextView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
