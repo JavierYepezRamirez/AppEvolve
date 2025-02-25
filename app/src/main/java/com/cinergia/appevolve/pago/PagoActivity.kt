@@ -87,6 +87,7 @@ class PagoActivity : AppCompatActivity() {
         val btnAceptarItem = dialogView.findViewById<Button>(R.id.btnAceptar)
 
         etCredito.isEnabled = false
+        etCredito.inputType = android.text.InputType.TYPE_CLASS_NUMBER
         btnAceptarItem.isEnabled = false
 
         val checkBoxes = listOf(
