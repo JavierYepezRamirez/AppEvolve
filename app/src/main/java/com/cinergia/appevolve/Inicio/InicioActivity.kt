@@ -25,10 +25,12 @@ class InicioActivity : AppCompatActivity() {
 
         val btnUsuario1 = findViewById<Button>(R.id.btnUsuario1)
         val btnUsuario2 = findViewById<Button>(R.id.btnUsuario2)
+        val btnUsuario3 = findViewById<Button>(R.id.btnUsuario3)
         val btnInfo = findViewById<ImageView>(R.id.btnInfo)
-        
+
         btnUsuario1.setOnClickListener { navigateToLoginUsuario1() }
         btnUsuario2.setOnClickListener { navigateToLoginUsuario2() }
+        btnUsuario3.setOnClickListener { navigateToLoginUsuario3() }
         btnInfo.setOnClickListener { mostrarDialogoInformacion() }
     }
 
@@ -46,6 +48,13 @@ class InicioActivity : AppCompatActivity() {
         val usuario2 = "Usuario2"
         val intent = Intent(this,LoginActivity::class.java)
         intent.putExtra("EXTRA_USUARIO",usuario2)
+        startActivity(intent)
+    }
+
+    private fun navigateToLoginUsuario3() {
+        val usuario3 = "EvolveAdmin"
+        val intent = Intent(this,LoginActivity::class.java)
+        intent.putExtra("EXTRA_USUARIO",usuario3)
         startActivity(intent)
     }
 

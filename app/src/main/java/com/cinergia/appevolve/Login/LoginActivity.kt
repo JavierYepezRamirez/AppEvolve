@@ -57,6 +57,10 @@ class LoginActivity : AppCompatActivity() {
                     validarCredenciales(usuario, contrasena, "654321")
                     etContrasena.setText("")
                 }
+                "EvolveAdmin" -> {
+                    validarCredenciales(usuario, contrasena, "258963")
+                    etContrasena.setText("")
+                }
             }
         }
     }

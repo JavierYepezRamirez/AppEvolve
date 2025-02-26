@@ -162,6 +162,14 @@ class PagoActivity : AppCompatActivity() {
         observaciones: String,
         pago: Int
     ) {
+        var tipoPago = ""
+
+        if(usuario == "EvolveAdmin") {
+            tipoPago = "Trasferecia"
+        } else {
+            tipoPago = "Efectivo"
+        }
+
         val destinatario = "javier_yepez@outlook.com"
 
         val asunto = "Pago registrado - ${cliente.nombre}, registrado por $usuario"
@@ -175,6 +183,7 @@ class PagoActivity : AppCompatActivity() {
             Fecha de Corte: ${cliente.f_corte ?: "Desconocido"}
             Correo: ${cliente.correo ?: "Desconocido"}
             El pago fue de: $$pago
+            Tipo de pago: $tipoPago
             Crédito: $credito
             Observaciones: $observaciones
             El Encargado es: $usuario
@@ -236,6 +245,14 @@ class PagoActivity : AppCompatActivity() {
         val f_corte = cliente.f_corte ?: "Desconocido"
         val correo = cliente.correo ?: "Desconocido"
 
+        var tipoPago = ""
+
+        if(usuario == "EvolveAdmin") {
+            tipoPago = "Trasferecia"
+        } else {
+            tipoPago = "Efectivo"
+        }
+
         Log.d(
             "PagoActivity",
             "Guardando pago: $nombre, $telefono, $direccion, $plan, $no_contrato, $f_corte, $correo, Fecha: $fechaActual"
@@ -253,7 +270,8 @@ class PagoActivity : AppCompatActivity() {
             "usuario" to usuario,
             "credito" to credito,
             "descripciones" to observaciones,
-            "pago" to pago
+            "pago" to pago,
+            "tipoPago" to tipoPago
         )
 
         referencia.child(idPago).setValue(datosPago)

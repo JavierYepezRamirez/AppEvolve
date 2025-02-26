@@ -46,6 +46,7 @@ class TicketActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("EXTRA_USUARIO", usuario)
         startActivity(intent)
+        finish()
     }
 
     findViewById<Button>(R.id.btnCancelarp).setOnClickListener {
@@ -81,6 +82,13 @@ class TicketActivity : AppCompatActivity() {
         observaciones: String,
         pago: Int
     ) {
+        var tipoPago = ""
+
+        if(usuario == "EvolveAdmin") {
+            tipoPago = "Trasferecia"
+        } else {
+            tipoPago = "Efectivo"
+        }
         val destinatario = "javier_yepez@outlook.com"
 
         val asunto = "Pago cancelado - ${cliente.nombre}, registrado por $usuario"
@@ -96,6 +104,7 @@ class TicketActivity : AppCompatActivity() {
             El pago fue de: $$pago
             Crédito: $credito
             Observaciones: $observaciones
+            Tipo de pago: $tipoPago
             El Encargado es: $usuario
         """.trimIndent()
 
@@ -156,6 +165,14 @@ class TicketActivity : AppCompatActivity() {
         val correo = cliente.correo ?: "Desconocido"
         val status = "Cancelado"
 
+        var tipoPago = ""
+
+        if(usuario == "EvolveAdmin") {
+            tipoPago = "Trasferecia"
+        } else {
+            tipoPago = "Efectivo"
+        }
+
         Log.d(
             "PagoActivity",
             "Guardando pago: $nombre, $telefono, $direccion, $plan, $no_contrato, $f_corte, $correo, Fecha: $fechaActual"
@@ -174,7 +191,8 @@ class TicketActivity : AppCompatActivity() {
             "credito" to credito,
             "descripciones" to observaciones,
             "pago" to pago,
-            "status" to status
+            "status" to status,
+            "tipoPago" to tipoPago
         )
 
         referencia.child(idPago).setValue(datosPago)
