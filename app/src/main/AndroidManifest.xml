@@ -16,7 +16,7 @@
             android:name=".Ticket.CancelarPagoActivity"
             android:exported="false" />
         <activity
-            android:name=".ticket.TicketActivity"
+            android:name=".Ticket.TicketActivity"
             android:exported="false" />
         <activity
             android:name=".pago.PagoActivity"

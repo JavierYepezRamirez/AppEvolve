@@ -2,25 +2,28 @@ import com.google.firebase.database.PropertyName
 import java.io.Serializable
 
 data class Clientes(
-    val correo: String? = null,
-    val direccion: String? = null,
-    val no_contrato: String? = null,
-    val f_corte: String? = null,
+    val id: String? = null,
+    val coordenadas: String? = null,
     val nombre: String? = null,
     val plan: Any? = null,
-    val telefono: Any? = null
+    val telefono: Any? = null,
+    val comunidad: String? = null,
 ) : Serializable {
+
+    fun obtenerid(): String {
+        return id?.trim()?.ifBlank { "Desconocido" } ?: "Desconocido"
+    }
 
     fun obtenerNombre(): String {
         return nombre?.trim()?.ifBlank { "Desconocido" } ?: "Desconocido"
     }
 
     fun obtenerDireccion(): String {
-        return direccion?.trim()?.ifBlank { "Desconocido" } ?: "Desconocido"
+        return coordenadas?.trim()?.ifBlank { "Desconocido" } ?: "Desconocido"
     }
 
     fun obtenerCorreo(): String {
-        return correo?.trim()?.ifBlank { "Desconocido" } ?: "Desconocido"
+        return comunidad?.trim()?.ifBlank { "Desconocido" } ?: "Desconocido"
     }
 
     // Renombramos getTelefono a obtenerTelefono

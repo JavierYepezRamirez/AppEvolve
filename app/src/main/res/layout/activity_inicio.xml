@@ -39,13 +39,13 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/usuario1"
         android:layout_width="201dp"
-        android:layout_height="210dp"
+        android:layout_height="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewLogo"
         app:cardBackgroundColor="@color/background"
         app:cardCornerRadius="16dp"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -54,8 +54,8 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@drawable/baseline_account_circle_24"
                 app:tint="@color/white">
             </ImageView>
@@ -63,7 +63,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Usuario 1"
+                android:text="Socorro"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="20dp">
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:text="Iniciar sesion"
                 android:backgroundTint="@color/item_background"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="10dp">
             </Button>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -85,13 +85,13 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/usuario2"
         android:layout_width="201dp"
-        android:layout_height="210dp"
+        android:layout_height="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usuario1"
         app:cardBackgroundColor="@color/background"
         app:cardCornerRadius="16dp"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="20dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -100,8 +100,8 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@drawable/baseline_account_circle_24"
                 app:tint="@color/white">
             </ImageView>
@@ -109,7 +109,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Usuario 2"
+                android:text="Martha"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="20dp">
@@ -119,9 +119,55 @@
                 android:id="@+id/btnUsuario2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:text="Iniciar sesion"
                 android:backgroundTint="@color/item_background">
+            </Button>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/usuario3"
+        android:layout_width="201dp"
+        android:layout_height="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usuario2"
+        app:cardBackgroundColor="@color/background"
+        app:cardCornerRadius="16dp"
+        android:layout_marginTop="20dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/baseline_account_circle_24"
+                app:tint="@color/white">
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Evolve Usuario"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="20dp">
+            </TextView>
+
+            <Button
+                android:id="@+id/btnUsuario3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Iniciar sesion"
+                android:backgroundTint="@color/item_background"
+                android:layout_marginTop="10dp">
             </Button>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
