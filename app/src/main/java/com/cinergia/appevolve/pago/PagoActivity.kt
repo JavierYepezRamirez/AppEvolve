@@ -17,7 +17,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.cinergia.appevolve.R
 import com.cinergia.appevolve.Usuarios.UsuariosActivity
-import com.cinergia.appevolve.ticket.TicketActivity
+import com.cinergia.appevolve.Ticket.TicketActivity
 import com.google.firebase.database.FirebaseDatabase
 import java.time.LocalDate
 import java.util.UUID
@@ -167,19 +167,17 @@ class PagoActivity : AppCompatActivity() {
             tipoPago = "Efectivo"
         }
 
-        val destinatario = "javier_yepez@outlook.com"
+        val destinatario = "pagos.evolvemx@gmail.com"
 
         val asunto = "Pago registrado - ${cliente.nombre}, registrado por $usuario"
         val mensaje = """
+            ID: ${cliente.id ?: "Desconocido"}
             Nombre: ${cliente.nombre ?: "Desconocido"}
             Teléfono: ${cliente.telefono?.toString() ?: "Desconocido"}
             Coordenadas: ${cliente.coordenadas ?: "Desconocido"}
             Comunidad: ${cliente.comunidad ?: "Desconocido"}
             Plan: ${cliente.plan?.toString() ?: "Desconocido"}
             Fecha del pago: $fechaActual
-            No. de Contrato: ${cliente.no_contrato ?: "Desconocido"}
-            Fecha de Corte: ${cliente.f_corte ?: "Desconocido"}
-            Correo: ${cliente.correo ?: "Desconocido"}
             El pago fue de: $$pago
             Tipo de pago: $tipoPago
             Observaciones: $observaciones
@@ -225,19 +223,18 @@ class PagoActivity : AppCompatActivity() {
         pago: Int
     ) {
         val database =
-            FirebaseDatabase.getInstance("https://crud-jgarrix99-default-rtdb.firebaseio.com/") //Cambiar base
+            FirebaseDatabase.getInstance("https://pagos-4c4bb-default-rtdb.firebaseio.com/") //Cambiar base
         val referencia = database.reference.child("pagos")
 
         val idPago = UUID.randomUUID().toString()
 
+        val id = cliente.id ?: "Desconocido"
         val nombre = cliente.nombre ?: "Desconocido"
         val telefono = cliente.telefono?.toString() ?: "Desconocido"
         val coordenadas = cliente.coordenadas ?: "Desconocido"
         val comunidad = cliente.comunidad ?: "Desconocido"
         val plan = cliente.plan?.toString() ?: "Desconocido"
-        val no_contrato = cliente.no_contrato ?: "Desconocido"
-        val f_corte = cliente.f_corte ?: "Desconocido"
-        val correo = cliente.correo ?: "Desconocido"
+        val status = "Completado"
 
         var tipoPago = ""
 
@@ -249,21 +246,20 @@ class PagoActivity : AppCompatActivity() {
 
         Log.d(
             "PagoActivity",
-            "Guardando pago: $nombre, $telefono, $coordenadas, $comunidad, $plan, $no_contrato, $f_corte, $correo, Fecha: $fechaActual"
+            "Guardando pago: $nombre, $telefono, $coordenadas, $comunidad, $plan, Fecha: $fechaActual, $id"
         )
 
         val datosPago = mapOf(
+            "id" to id,
             "nombre" to nombre,
             "telefono" to telefono,
             "coordenadas" to coordenadas,
             "comunidad" to comunidad,
             "plan" to plan,
             "fecha" to fechaActual,
-            "no_contrato" to no_contrato,
-            "f_corte" to f_corte,
-            "correo" to correo,
             "usuario" to usuario,
             "descripciones" to observaciones,
+            "status" to status,
             "pago" to pago,
             "tipoPago" to tipoPago
         )

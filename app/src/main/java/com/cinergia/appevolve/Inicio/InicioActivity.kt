@@ -36,7 +36,7 @@ class InicioActivity : AppCompatActivity() {
 
     private fun navigateToLoginUsuario1() {
         // Cambiar Usuario1 nombre de la persona
-        val usuario1 = "Usuario1"
+        val usuario1 = "Socorro"
         val intent = Intent(this,LoginActivity::class.java)
         intent.putExtra("EXTRA_USUARIO",usuario1)
         startActivity(intent)
@@ -45,7 +45,7 @@ class InicioActivity : AppCompatActivity() {
 
     private fun navigateToLoginUsuario2() {
         // Cambiar Usuario1 nombre de la persona
-        val usuario2 = "Usuario2"
+        val usuario2 = "Martha"
         val intent = Intent(this,LoginActivity::class.java)
         intent.putExtra("EXTRA_USUARIO",usuario2)
         startActivity(intent)

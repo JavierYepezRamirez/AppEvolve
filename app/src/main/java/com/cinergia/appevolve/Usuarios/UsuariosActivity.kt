@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cinergia.appevolve.R
 import com.cinergia.appevolve.pago.PagoActivity
 import com.google.firebase.database.*
+import java.text.Normalizer
 
 class UsuariosActivity : AppCompatActivity() {
 
@@ -40,7 +41,7 @@ class UsuariosActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         // Obtener usuarios desde Firebase
-        val database = FirebaseDatabase.getInstance("https://backend-mvc-5dc03-default-rtdb.firebaseio.com/")
+        val database = FirebaseDatabase.getInstance("https://usuarios-1c993-default-rtdb.firebaseio.com/")
             .reference.child("contactos_clientes").child("contactos_clientes")
 
         database.addValueEventListener(object : ValueEventListener {
@@ -82,9 +83,17 @@ class UsuariosActivity : AppCompatActivity() {
     }
 
     private fun filterUsers(query: String?) {
+        val normalizedQuery = normalizeText(query ?: "")
+
         val filteredList = listaUsuarios.filter {
-            it.nombre?.contains(query ?: "", ignoreCase = true) == true || it.telefono?.toString()?.contains(query ?: "", ignoreCase = true) == true
+            normalizeText(it.nombre ?: "").contains(normalizedQuery, ignoreCase = true) ||
+                    normalizeText(it.telefono?.toString() ?: "").contains(normalizedQuery, ignoreCase = true)
         }
         adapter.updateList(filteredList)
+    }
+
+    private fun normalizeText(text: String): String {
+        return Normalizer.normalize(text, Normalizer.Form.NFD)
+            .replace(Regex("[\\p{InCombiningDiacriticalMarks}]"), "")
     }
 }

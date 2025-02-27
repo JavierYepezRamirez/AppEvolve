@@ -49,12 +49,12 @@ class LoginActivity : AppCompatActivity() {
             val contrasena = etContrasena.text.toString()
 
             when (usuario) {
-                "Usuario1" -> {
-                    validarCredenciales(usuario, contrasena, "123456")
+                "Socorro" -> {
+                    validarCredenciales(usuario, contrasena, "112233")
                     etContrasena.setText("")
                 }
-                "Usuario2" -> {
-                    validarCredenciales(usuario, contrasena, "654321")
+                "Martha" -> {
+                    validarCredenciales(usuario, contrasena, "909090")
                     etContrasena.setText("")
                 }
                 "EvolveAdmin" -> {

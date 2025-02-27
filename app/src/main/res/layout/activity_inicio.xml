@@ -63,7 +63,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Usuario 1"
+                android:text="Socorro"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="20dp">
@@ -109,7 +109,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Usuario 2"
+                android:text="Martha"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="20dp">

@@ -1,72 +1,69 @@
-package com.cinergia.appevolve.ticket
+package com.cinergia.appevolve.Ticket
 
 import Clientes
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.cinergia.appevolve.R
-import com.cinergia.appevolve.Ticket.CancelarPagoActivity
 import com.cinergia.appevolve.main.MainActivity
 import com.google.firebase.database.FirebaseDatabase
 import java.util.UUID
+import kotlin.math.log
 
 class TicketActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ticket2)
+        setContentView(R.layout.activity_ticket)
     ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets }
 
-    val cliente = intent.getSerializableExtra("cliente")as? Clientes ?: Clientes()
-    val usuario:String = intent.extras?.getString("EXTRA_USUARIO").orEmpty()
-    val fecha:String = intent.extras?.getString("fecha").orEmpty()
-    val credito:String = intent.extras?.getString("credito").orEmpty()
-    val observaciones:String = intent.extras?.getString("observaciones").orEmpty()
-    val pago: Int = intent.extras?.getInt("pago", 0) ?: 0
+        val cliente = intent.getSerializableExtra("cliente")as? Clientes ?: Clientes()
+        val usuario:String = intent.extras?.getString("EXTRA_USUARIO").orEmpty()
+        val fecha:String = intent.extras?.getString("fecha").orEmpty()
+        val observaciones:String = intent.extras?.getString("observaciones").orEmpty()
+        val pago: Int = intent.extras?.getInt("pago", 0) ?: 0
 
-    findViewById<TextView>(R.id.tvNombre).text = "Nombre: ${cliente.nombre ?: "Desconocido"}"
-    findViewById<TextView>(R.id.tvTelefono).text = "Teléfono: ${cliente.telefono ?: "Desconocido"}"
-    findViewById<TextView>(R.id.tvPlan).text = "Plan($): ${cliente.plan ?: "Desconocido"}"
-    findViewById<TextView>(R.id.tvFecha).text = "Fecha: $fecha"
-
-    findViewById<Button>(R.id.btnTerminar).setOnClickListener {
-        val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("EXTRA_USUARIO", usuario)
-        startActivity(intent)
-        finish()
-    }
+        findViewById<TextView>(R.id.tvNombre).text = "Nombre: ${cliente.nombre ?: "Desconocido"}"
+        findViewById<TextView>(R.id.tvTelefono).text = "Teléfono: ${cliente.telefono ?: "Desconocido"}"
+        findViewById<TextView>(R.id.tvPlan).text = "Plan($): ${cliente.plan ?: "Desconocido"}"
+        findViewById<TextView>(R.id.tvFecha).text = "Fecha: $fecha"
 
 
-        findViewById<AppCompatButton>(R.id.btnTerminar).setOnClickListener {
+        findViewById<Button>(R.id.btnTerminar).setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("EXTRA_USUARIO", usuario)
             startActivity(intent)
+            finish()
         }
-        findViewById<AppCompatButton>(R.id.btnCancelar).setOnClickListener {
+        findViewById<Button>(R.id.btnCancelart).setOnClickListener {
+            Log.d(
+                "Se toco el boton",
+                "Holaaaaa"
+            )
             val dialogView = layoutInflater.inflate(R.layout.item_dialog2, null)
             val dialog = AlertDialog.Builder(this).setView(dialogView).create()
 
-            dialogView.findViewById<Button>(R.id.btnYes).setOnClickListener {
+            dialog.show()
+
+            dialogView.findViewById<Button>(R.id.btnYes2).setOnClickListener {
                 AlertDialog.Builder(this)
                     .setTitle("✅ Cancelación Exitosa")
                     .setMessage("Por favor, envía el ticket de pago por correo.")
                     .setPositiveButton("OK") { _, _ ->
+                    }
                         goToTiket(cliente, fecha, usuario, observaciones, pago)
                         goToEmail(cliente, fecha, usuario, observaciones, pago)
                         goToFirebase(cliente, fecha, usuario, observaciones, pago)
-                    }
+                    dialog.show()
             }
             dialogView.findViewById<Button>(R.id.btnNo).setOnClickListener {
                 dialog.dismiss()
@@ -87,19 +84,17 @@ class TicketActivity : AppCompatActivity() {
         } else {
             tipoPago = "Efectivo"
         }
-        val destinatario = "javier_yepez@outlook.com"
+        val destinatario = "pagos.evolvemx@gmail.com"
 
         val asunto = "Pago cancelado - ${cliente.nombre}, registrado por $usuario"
         val mensaje = """
+            ID: ${cliente.id ?: "id"}
             Nombre: ${cliente.nombre ?: "Desconocido"}
             Teléfono: ${cliente.telefono?.toString() ?: "Desconocido"}
             Coordenadas: ${cliente.coordenadas ?: "Desconocido"}
             Comunidad: ${cliente.comunidad ?: "Desconocido"}
             Plan: ${cliente.plan?.toString() ?: "Desconocido"}
             Fecha del pago: $fechaActual
-            No. de Contrato: ${cliente.no_contrato ?: "Desconocido"}
-            Fecha de Corte: ${cliente.f_corte ?: "Desconocido"}
-            Correo: ${cliente.correo ?: "Desconocido"}
             El pago fue de: $$pago
             Observaciones: $observaciones
             Tipo de pago: $tipoPago
@@ -145,19 +140,17 @@ class TicketActivity : AppCompatActivity() {
         pago: Int
     ) {
         val database =
-            FirebaseDatabase.getInstance("https://crud-jgarrix99-default-rtdb.firebaseio.com/") //Cambiar base
+            FirebaseDatabase.getInstance("https://pagos-4c4bb-default-rtdb.firebaseio.com/") //Cambiar base
         val referencia = database.reference.child("pagos")
 
         val idPago = UUID.randomUUID().toString()
 
+        val id = cliente.id ?: "Desconocido"
         val nombre = cliente.nombre ?: "Desconocido"
         val telefono = cliente.telefono?.toString() ?: "Desconocido"
         val coordenadas = cliente.coordenadas ?: "Desconocido"
         val comunidad = cliente.comunidad ?: "Desconocido"
         val plan = cliente.plan?.toString() ?: "Desconocido"
-        val no_contrato = cliente.no_contrato ?: "Desconocido"
-        val f_corte = cliente.f_corte ?: "Desconocido"
-        val correo = cliente.correo ?: "Desconocido"
         val status = "Cancelado"
 
         var tipoPago = ""
@@ -170,19 +163,17 @@ class TicketActivity : AppCompatActivity() {
 
         Log.d(
             "PagoActivity",
-            "Guardando pago: $nombre, $telefono, $coordenadas. $comunidad, $plan, $no_contrato, $f_corte, $correo, Fecha: $fechaActual"
+            "Guardando pago: $nombre, $telefono, $coordenadas. $comunidad, $plan, Fecha: $fechaActual, $id"
         )
 
         val datosPago = mapOf(
+            "id" to id,
             "nombre" to nombre,
             "telefono" to telefono,
             "coordenadas" to coordenadas,
             "comunidad" to comunidad,
             "plan" to plan,
             "fecha" to fechaActual,
-            "no_contrato" to no_contrato,
-            "f_corte" to f_corte,
-            "correo" to correo,
             "usuario" to usuario,
             "descripciones" to observaciones,
             "pago" to pago,

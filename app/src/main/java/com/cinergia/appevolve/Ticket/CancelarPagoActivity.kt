@@ -26,13 +26,11 @@ class CancelarPagoActivity : AppCompatActivity() {
         val cliente = intent.getSerializableExtra("cliente")as? Clientes ?: Clientes()
         val usuario:String = intent.extras?.getString("EXTRA_USUARIO").orEmpty()
         val fecha:String = intent.extras?.getString("fecha").orEmpty()
-        val credito:String = intent.extras?.getString("credito").orEmpty()
         val observaciones:String = intent.extras?.getString("observaciones").orEmpty()
         val pago: Int = intent.extras?.getInt("pago", 0) ?: 0
 
         findViewById<TextView>(R.id.tvNombrec).text = "Nombre: ${cliente.nombre ?: "Desconocido"}"
         findViewById<TextView>(R.id.tvTelefonoc).text = "Teléfono: ${cliente.telefono ?: "Desconocido"}"
-        findViewById<TextView>(R.id.tvDireccionc).text = "Dirección: ${cliente.direccion ?: "Desconocido"}"
         findViewById<TextView>(R.id.tvPlanc).text = "Plan($): ${cliente.plan ?: "Desconocido"}"
         findViewById<TextView>(R.id.tvFechac).text = "Fecha: $fecha"
 
