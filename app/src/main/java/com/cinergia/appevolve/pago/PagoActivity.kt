@@ -121,6 +121,14 @@ class PagoActivity : AppCompatActivity() {
         }
 
         btnAceptarItem.setOnClickListener {
+            if (checkBoxes.none { it.isChecked }) {
+                Toast.makeText(this, "Seleccione un monto antes de continuar", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (cbCredito.isChecked && etCredito.text.isNullOrEmpty()) {
+                Toast.makeText(this, "Por favor, ingresa el monto del crédito.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             val pago = when {
                 checkBoxes[0].isChecked -> 250
                 checkBoxes[1].isChecked -> 350
@@ -162,7 +170,7 @@ class PagoActivity : AppCompatActivity() {
         var tipoPago = ""
 
         if(usuario == "EvolveAdmin") {
-            tipoPago = "Trasferecia"
+            tipoPago = "Transferencia"
         } else {
             tipoPago = "Efectivo"
         }
@@ -239,7 +247,7 @@ class PagoActivity : AppCompatActivity() {
         var tipoPago = ""
 
         if(usuario == "EvolveAdmin") {
-            tipoPago = "Trasferecia"
+            tipoPago = "Transferencia"
         } else {
             tipoPago = "Efectivo"
         }

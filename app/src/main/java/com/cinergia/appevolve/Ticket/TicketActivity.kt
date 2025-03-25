@@ -80,7 +80,7 @@ class TicketActivity : AppCompatActivity() {
         var tipoPago = ""
 
         if(usuario == "EvolveAdmin") {
-            tipoPago = "Trasferecia"
+            tipoPago = "Transferencia"
         } else {
             tipoPago = "Efectivo"
         }
@@ -156,7 +156,7 @@ class TicketActivity : AppCompatActivity() {
         var tipoPago = ""
 
         if(usuario == "EvolveAdmin") {
-            tipoPago = "Trasferecia"
+            tipoPago = "Transferencia"
         } else {
             tipoPago = "Efectivo"
         }
