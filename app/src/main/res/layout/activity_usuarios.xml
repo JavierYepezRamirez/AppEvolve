@@ -27,6 +27,76 @@
 
         </androidx.cardview.widget.CardView>
 
+        <!-- Nueva sección de explicación sobre los íconos y colores -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:gravity="center_horizontal">
+
+            <!-- Cuadro para "No ha pagado" -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp"
+                android:background="@drawable/border_item_nopago"
+                android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⌛ No pagado"
+                    android:textColor="@color/item_tex"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Este color indica que no ha pagado este mes."
+                    android:textColor="@color/item_tex"
+                    android:textSize="13sp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <!-- Cuadro para "Ya ha pagado" -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp"
+                android:background="@drawable/border_item_pago"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="✅ Pagado"
+                    android:textColor="@color/item_tex"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Este color indica que ha pagado este mes."
+                    android:textColor="@color/item_tex"
+                    android:textSize="13sp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"

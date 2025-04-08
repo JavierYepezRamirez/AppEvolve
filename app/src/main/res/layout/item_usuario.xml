@@ -32,7 +32,7 @@
                 android:id="@+id/tvNombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/item_tex"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:text="Nombre" />
@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:textColor="@color/white"
+                android:textColor="@color/item_tex"
                 android:textStyle="bold"
                 tools:text="Telefono" />
         </LinearLayout>
