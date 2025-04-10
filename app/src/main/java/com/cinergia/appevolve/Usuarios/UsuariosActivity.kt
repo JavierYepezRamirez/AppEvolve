@@ -119,10 +119,17 @@ class UsuariosActivity : AppCompatActivity() {
     private fun filterUsers(query: String?) {
         val normalizedQuery = normalizeText(query ?: "")
 
+        if (normalizedQuery.isBlank()) {
+            adapter.updateList(listaUsuarios) // Mostrar todos los usuarios si no hay texto
+            return
+        }
+
         val filteredList = listaUsuarios.filter {
             normalizeText(it.nombre ?: "").contains(normalizedQuery, ignoreCase = true) ||
                     normalizeText(it.telefono?.toString() ?: "").contains(normalizedQuery, ignoreCase = true)
         }
+
+        adapter.updateList(filteredList)
     }
 
     private fun normalizeText(text: String): String {
